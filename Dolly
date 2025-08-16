@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Easy Tech - Apprendre la Programmation</title>
+<style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#0d0d0d; color:#fff;}
+    header { background: linear-gradient(90deg, #ffcc00, #ffffff); padding:20px; text-align:center; }
+    header h1 { margin:0; color:#0d0d0d; }
+    nav { text-align:center; margin:20px 0; }
+    nav a { color:#ffcc00; text-decoration:none; margin:0 15px; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    .hero { text-align:center; padding:50px 20px; }
+    .hero h2 { font-size:2em; margin-bottom:20px; }
+    .hero p { font-size:1.2em; margin-bottom:30px; }
+    .btn { background-color:#ffcc00; color:#0d0d0d; padding:15px 30px; border:none; border-radius:8px; cursor:pointer; font-size:1em; font-weight:bold; }
+    .btn:hover { background-color:#e6b800; }
+    .courses { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; }
+    .course { background:#1a1a1a; margin:15px; padding:20px; border-radius:10px; width:250px; box-shadow:0 0 10px #ffcc00; }
+    .course h3 { margin-top:0; color:#ffcc00; }
+    .course p { font-size:0.9em; line-height:1.4em; }
+    footer { text-align:center; padding:20px; background:#111; color:#aaa; }/* Styles pour login admin */
+#adminLogin { display:none; text-align:center; padding:50px 20px; }
+#adminLogin input { padding:10px; margin:10px 0; width:200px; border-radius:5px; border:none; }
+#adminArea { display:none; padding:20px; background:#1a1a1a; text-align:center; }
+#adminArea textarea { width:80%; height:150px; border-radius:8px; padding:10px; margin-bottom:10px; }
+
+</style>
+</head>
+<body><header>
+    <h1>Easy Tech</h1>
+</header><nav>
+    <a href="#courses">Cours</a>
+    <a href="#" onclick="showAdminLogin()">Admin</a>
+</nav><section class="hero">
+    <h2>Apprends la Programmation Facilement</h2>
+    <p>Rejoins nos cours en ligne et deviens un expert en C++, Python, Arduino et plus encore.</p>
+</section><section id="courses" class="courses">
+    <div class="course">
+        <h3>C++ Débutant</h3>
+        <p>Apprends les bases de C++ avec des exemples et exercices pratiques.</p>
+    </div>
+    <div class="course">
+        <h3>Python</h3>
+        <p>Découvre Python et crée tes premiers programmes interactifs.</p>
+    </div>
+    <div class="course">
+        <h3>Arduino & ESP32</h3>
+        <p>Maîtrise les microcontrôleurs et construis tes projets électroniques.</p>
+    </div>
+</section><!-- Login admin --><section id="adminLogin">
+    <h2>Connexion Administrateur</h2>
+    <input type="password" id="adminPassword" placeholder="Mot de passe">
+    <br>
+    <button class="btn" onclick="checkPassword()">Se connecter</button>
+</section><!-- Espace admin --><section id="adminArea">
+    <h2>Espace Administrateur</h2>
+    <p>Écris ici le nouveau cours :</p>
+    <textarea id="newCourse" placeholder="Titre et description du cours"></textarea>
+    <br>
+    <button class="btn" onclick="addCourse()">Ajouter le cours</button>
+</section><footer>
+    <p>&copy; 2025 Easy Tech - Tous droits réservés</p>
+</footer><script>
+    // Affiche login admin
+    function showAdminLogin() {
+        document.getElementById('adminLogin').style.display = 'block';
+    }
+
+    // Vérifie mot de passe
+    function checkPassword() {
+        const password = document.getElementById('adminPassword').value;
+        if(password === "EasyTech123") { // change le mot de passe ici
+            document.getElementById('adminLogin').style.display = 'none';
+            document.getElementById('adminArea').style.display = 'block';
+        } else {
+            alert("Mot de passe incorrect!");
+        }
+    }
+
+    // Ajouter un cours
+    function addCourse() {
+        const content = document.getElementById('newCourse').value;
+        if(content.trim() === "") return alert("Le contenu est vide!");
+        const courseDiv = document.createElement('div');
+        courseDiv.className = 'course';
+        const parts = content.split("\n", 2);
+        courseDiv.innerHTML = "<h3>" + parts[0] + "</h3><p>" + (parts[1] || "") + "</p>";
+        document.getElementById('courses').appendChild(courseDiv);
+        document.getElementById('newCourse').value = "";
+        alert("Cours ajouté!");
+    }
+</script></body>
+</html>
